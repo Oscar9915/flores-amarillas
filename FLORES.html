@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas</title>
+    <style>
+        body {
+            background-color: #fff8dc;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .carousel {
+            position: relative;
+            max-width: 400px;
+            margin: auto;
+        }
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- IFRAME PARA MANTENER LA MÚSICA -->
+    <iframe id="musicFrame" src="music.html" style="display:none;"></iframe>
+
+    <div class="container">
+        <h1>🌼 Flores Amarillas 🌼</h1>
+        <div class="carousel">
+            <img src="img/flores1.webp" class="active" alt="Flores Amarillas">
+            <img src="img/flores2.jpg" alt="Flores Amarillas">
+            <img src="img/flores3.jpg" alt="Flores Amarillas">
+        </div>
+        <br>
+        <button onclick="goToIndex()">Volver al Inicio</button>
+    </div>
+
+    <script>
+        function goToIndex() {
+            window.location.href = "index.html";
+        }
+
+        let index = 0;
+        const images = document.querySelectorAll('.carousel img');
+        function showNextImage() {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }
+        setInterval(showNextImage, 3000);
+
+        function toggleMusic() {
+            document.getElementById("musicFrame").contentWindow.postMessage("toggleMusic", "*");
+        }
+    </script>
+</body>
+</html>

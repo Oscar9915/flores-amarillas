@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>FLORES</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #e1b810;
+            margin: 0;
+            padding: 0;
+        }
+
+        .greetings h1 {
+            font-size: 4rem;
+        }
+
+        .greetings p {
+            font-size: 2rem;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .fancy-button {
+            background: linear-gradient(45deg, #FFD700, #FFB700);
+            color: #fff;
+            font-weight: bold;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.5);
+            text-transform: uppercase;
+            outline: none;
+            font-size: 1rem;
+            width: 80%;
+            max-width: 250px;
+            display: inline-block;
+        }
+
+        .fancy-button:hover {
+            background: linear-gradient(45deg, #FFB700, #FFD700);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.7);
+        }
+
+        @media (max-width: 480px) {
+            .fancy-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- IFRAME PARA LA MÚSICA -->
+    <iframe id="musicFrame" src="music.html" style="display:none;"></iframe>
+
+    <script>
+        function toggleMusic() {
+            document.getElementById("musicFrame").contentWindow.postMessage("toggleMusic", "*");
+        }
+
+        function goToFlowers() {
+            window.location.href = "FLORES.html";
+        }
+    </script>
+
+    <div class="greetings">
+        <h1>🌼 ¡Hola espero te guste! 🌼</h1>
+        <p>Tengo un regalo especial para ti 🎁</p>
+    </div>
+
+    <div class="button-container">
+        <button class="fancy-button" onclick="goToFlowers()">¡Ver Sorpresa!</button>
+    </div>
+
+    <div class="button-container">
+        <button class="fancy-button" onclick="toggleMusic()">🎵 Play/Pausa Música</button>
+    </div>
+</body>
+</html>

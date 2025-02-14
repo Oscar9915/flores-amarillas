@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="img/Floricienta.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+    <script>
+        const audio = document.getElementById("bgMusic");
+
+        function playMusic() {
+            audio.play().then(() => {
+                localStorage.setItem("musicPlaying", "true");
+            }).catch(() => {
+                console.log("El navegador bloqueó la reproducción automática.");
+            });
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                playMusic();
+            } else {
+                audio.pause();
+                localStorage.setItem("musicPlaying", "false");
+            }
+        }
+
+        // Reanudar música si estaba activa antes
+        if (localStorage.getItem("musicPlaying") === "true") {
+            playMusic();
+        }
+
+        // Escuchar mensajes desde otras páginas
+        window.addEventListener("message", (event) => {
+            if (event.data === "toggleMusic") {
+                toggleMusic();
+            }
+        });
+    </script>
+</body>
+</html>
